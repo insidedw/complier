@@ -119,7 +119,7 @@ export function tokenize(sourceCode: string): Token[] {
       } // Handle unreconized characters.
       // TODO: Implement better errors and error recovery.
       else {
-        throw new Error(`Unreconized character found in source: ${src[0].charCodeAt(0)}, ${src[0]}`)
+        console.error('Unrecognized character found in source: ', src[0].charCodeAt(0), src[0])
       }
     }
   }
