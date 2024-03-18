@@ -7,6 +7,7 @@
 // Represents tokens that our language understands in parsing.
 export enum TokenType {
   // Literal Types
+  Null,
   Number,
   Identifier,
 
@@ -26,6 +27,7 @@ export enum TokenType {
  */
 const KEYWORDS: Record<string, TokenType> = {
   let: TokenType.Let,
+  null: TokenType.Null,
 }
 
 // Reoresents a single token from the source-code.
@@ -108,7 +110,7 @@ export function tokenize(sourceCode: string): Token[] {
         const reserved = KEYWORDS[ident]
         // If value is not undefined then the identifier is
         // reconized keyword
-        if (reserved) {
+        if (typeof reserved == 'number') {
           tokens.push(token(ident, reserved))
         } else {
           // Unreconized name must mean user defined symbol.
@@ -118,9 +120,9 @@ export function tokenize(sourceCode: string): Token[] {
         // Skip uneeded chars.
         src.shift()
       } // Handle unreconized characters.
-      // TODO: Implement better errors and error recovery.
+      // TODO: Impliment better errors and error recovery.
       else {
-        console.error('Unrecognized character found in source: ', src[0].charCodeAt(0), src[0])
+        console.error('Unreconized character found in source: ', src[0].charCodeAt(0), src[0])
       }
     }
   }

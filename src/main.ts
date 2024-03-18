@@ -1,5 +1,5 @@
 import Parser from './frontend/parser'
-
+import { evaluate } from './runtime/interpreter'
 repl()
 
 function repl() {
@@ -11,11 +11,13 @@ function repl() {
     const input = prompt('> ')
     // Check for no user input or exit keyword.
     if (!input || input.includes('exit')) {
-      throw new Error('error')
+      throw new Error()
     }
 
     // Produce AST From sourc-code
     const program = parser.produceAST(input)
-    console.log(program)
+
+    const result = evaluate(program)
+    console.log(result)
   }
 }
