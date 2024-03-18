@@ -1,4 +1,4 @@
-import { MK_BOOL, MK_NATIVE_FN, MK_NULL, MK_NUMBER, RuntimeVal } from './values.ts'
+import { MK_BOOL, MK_NATIVE_FN, MK_NULL, MK_NUMBER, RuntimeVal } from './values'
 
 export function createGlobalEnv() {
   const env = new Environment()

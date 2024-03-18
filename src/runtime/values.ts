@@ -1,5 +1,5 @@
-import Environment from './environment.ts'
-import { Stmt } from '../frontend/ast.ts'
+import Environment from './environment'
+import { Stmt } from '../frontend/ast'
 export type ValueType = 'null' | 'number' | 'boolean' | 'object' | 'native-fn' | 'function'
 
 export interface RuntimeVal {

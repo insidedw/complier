@@ -1,4 +1,4 @@
-import { NumberVal, RuntimeVal } from './values.ts'
+import { NumberVal, RuntimeVal } from './values'
 import {
   AssignmentExpr,
   BinaryExpr,
@@ -10,16 +10,16 @@ import {
   Program,
   Stmt,
   VarDeclaration,
-} from '../frontend/ast.ts'
-import Environment from './environment.ts'
-import { eval_function_declaration, eval_program, eval_var_declaration } from './eval/statements.ts'
+} from '../frontend/ast'
+import Environment from './environment'
+import { eval_function_declaration, eval_program, eval_var_declaration } from './eval/statements'
 import {
   eval_assignment,
   eval_binary_expr,
   eval_call_expr,
   eval_identifier,
   eval_object_expr,
-} from './eval/expressions.ts'
+} from './eval/expressions'
 
 export function evaluate(astNode: Stmt, env: Environment): RuntimeVal {
   switch (astNode.kind) {
@@ -45,9 +45,9 @@ export function evaluate(astNode: Stmt, env: Environment): RuntimeVal {
       return eval_var_declaration(astNode as VarDeclaration, env)
     case 'FunctionDeclaration':
       return eval_function_declaration(astNode as FunctionDeclaration, env)
-    // Handle unimplimented ast types as error.
+    // Handle unimplemented ast types as error.
     default:
       console.error('This AST Node has not yet been setup for interpretation.\n', astNode)
-      Deno.exit(0)
+      throw new Error()
   }
 }

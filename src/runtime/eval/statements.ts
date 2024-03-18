@@ -1,7 +1,7 @@
-import { FunctionDeclaration, Program, VarDeclaration } from '../../frontend/ast.ts'
-import Environment from '../environment.ts'
-import { evaluate } from '../interpreter.ts'
-import { FunctionValue, MK_NULL, RuntimeVal } from '../values.ts'
+import { FunctionDeclaration, Program, VarDeclaration } from '../../frontend/ast'
+import Environment from '../environment'
+import { evaluate } from '../interpreter'
+import { FunctionValue, MK_NULL, RuntimeVal } from '../values'
 
 export function eval_program(program: Program, env: Environment): RuntimeVal {
   let lastEvaluated: RuntimeVal = MK_NULL()
