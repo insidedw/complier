@@ -7,10 +7,8 @@
 // Represents tokens that our language understands in parsing.
 export enum TokenType {
   // Literal Types
-  Null,
   Number,
   Identifier,
-
   // Keywords
   Let,
 
@@ -27,7 +25,6 @@ export enum TokenType {
  */
 const KEYWORDS: Record<string, TokenType> = {
   let: TokenType.Let,
-  null: TokenType.Null,
 }
 
 // Reoresents a single token from the source-code.
@@ -123,6 +120,7 @@ export function tokenize(sourceCode: string): Token[] {
       // TODO: Impliment better errors and error recovery.
       else {
         console.error('Unreconized character found in source: ', src[0].charCodeAt(0), src[0])
+        // Deno.exit(1)
       }
     }
   }
