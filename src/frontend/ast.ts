@@ -5,7 +5,14 @@
 // ---     Defines the structure of our languages AST      ---
 // -----------------------------------------------------------
 
-export type NodeType = 'Program' | 'NumericLiteral' | 'Identifier' | 'BinaryExpr'
+export type NodeType =
+  // STATEMENTS
+  | 'Program'
+  | 'VarDeclaration'
+  // EXPRESSIONS
+  | 'NumericLiteral'
+  | 'Identifier'
+  | 'BinaryExpr'
 
 /**
  * Statements do not result in a value at runtime.
@@ -21,6 +28,13 @@ export interface Stmt {
 export interface Program extends Stmt {
   kind: 'Program'
   body: Stmt[]
+}
+
+export interface VarDeclaration extends Stmt {
+  kind: 'VarDeclaration'
+  constant: boolean
+  identifier: string
+  value?: Expr
 }
 
 /**  Expressions will result in a value at runtime unlike Statements */
