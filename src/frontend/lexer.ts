@@ -18,6 +18,7 @@ export enum TokenType {
   Equals,
   OpenParen,
   CloseParen,
+  EOF, // Signified the end of file
 }
 
 /**
@@ -80,7 +81,7 @@ export function tokenize(sourceCode: string): Token[] {
     } else if (src[0] == ')') {
       tokens.push(token(src.shift(), TokenType.CloseParen))
     } // HANDLE BINARY OPERATORS
-    else if (src[0] == '+' || src[0] == '-' || src[0] == '*' || src[0] == '/') {
+    else if (src[0] == '+' || src[0] == '-' || src[0] == '*' || src[0] == '/' || src[0] == '%') {
       tokens.push(token(src.shift(), TokenType.BinaryOperator))
     } // Handle Conditional & Assignment Tokens
     else if (src[0] == '=') {
@@ -124,5 +125,6 @@ export function tokenize(sourceCode: string): Token[] {
     }
   }
 
+  tokens.push({ type: TokenType.EOF, value: 'EndOfFile' })
   return tokens
 }
