@@ -96,7 +96,7 @@ export interface Identifier extends Expr {
 }
 
 /**
- * Represents a numeric constant inside the soure code.
+ * Represents a numeric constant inside the source code.
  */
 export interface NumericLiteral extends Expr {
   kind: 'NumericLiteral'

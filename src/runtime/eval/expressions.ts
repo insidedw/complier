@@ -1,7 +1,7 @@
-import { AssignmentExpr, BinaryExpr, CallExpr, Identifier, ObjectLiteral } from '../../frontend/ast.ts'
-import Environment from '../environment.ts'
-import { evaluate } from '../interpreter.ts'
-import { FunctionValue, MK_NULL, NativeFnValue, NumberVal, ObjectVal, RuntimeVal } from '../values.ts'
+import { AssignmentExpr, BinaryExpr, CallExpr, Identifier, ObjectLiteral } from '../../frontend/ast'
+import Environment from '../environment'
+import { evaluate } from '../interpreter'
+import { FunctionValue, MK_NULL, NativeFnValue, NumberVal, ObjectVal, RuntimeVal } from '../values'
 
 function eval_numeric_binary_expr(lhs: NumberVal, rhs: NumberVal, operator: string): NumberVal {
   let result: number

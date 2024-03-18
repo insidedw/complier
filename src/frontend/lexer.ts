@@ -145,10 +145,10 @@ export function tokenize(sourceCode: string): Token[] {
         // Skip uneeded chars.
         src.shift()
       } // Handle unreconized characters.
-      // TODO: Impliment better errors and error recovery.
+      // TODO: Implement better errors and error recovery.
       else {
         console.error('Unreconized character found in source: ', src[0].charCodeAt(0), src[0])
-        Deno.exit(1)
+        throw new Error()
       }
     }
   }
