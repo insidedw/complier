@@ -1,5 +1,5 @@
 // deno-lint-ignore-file no-explicit-any
-import { BinaryExpr, Expr, Identifier, NullLiteral, NumericLiteral, Program, Stmt } from './ast'
+import { BinaryExpr, Expr, Identifier, NumericLiteral, Program, Stmt } from './ast'
 
 import { Token, tokenize, TokenType } from './lexer'
 
@@ -39,7 +39,7 @@ export default class Parser {
     const prev = this.tokens.shift() as Token
     if (!prev || prev.type != type) {
       console.error('Parser Error:\n', err, prev, ' - Expecting: ', type)
-      throw new Error()
+      // Deno.exit(1)
     }
 
     return prev
@@ -122,10 +122,6 @@ export default class Parser {
       case TokenType.Identifier:
         return { kind: 'Identifier', symbol: this.eat().value } as Identifier
 
-      case TokenType.Null:
-        this.eat() // advance past null keyword
-        return { kind: 'NullLiteral', value: 'null' } as NullLiteral
-
       // Constants and Numeric Constants
       case TokenType.Number:
         return {
@@ -147,6 +143,7 @@ export default class Parser {
       // Unidentified Tokens and Invalid Code Reached
       default:
         console.error('Unexpected token found during parsing!', this.at())
+      // Deno.exit(1)
     }
   }
 }

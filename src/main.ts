@@ -1,9 +1,20 @@
 import Parser from './frontend/parser'
+import Environment from './runtime/environment'
 import { evaluate } from './runtime/interpreter'
+import { MK_BOOL, MK_NULL, MK_NUMBER } from './runtime/values'
 repl()
 
 function repl() {
   const parser = new Parser()
+  const env = new Environment()
+
+  // Create Default Global Enviornment
+  env.declareVar('x', MK_NUMBER(100))
+  env.declareVar('true', MK_BOOL(true))
+  env.declareVar('false', MK_BOOL(false))
+  env.declareVar('null', MK_NULL())
+
+  // INITIALIZE REPL
   console.log('\nRepl v0.1')
 
   // Continue Repl Until User Stops Or Types `exit`
@@ -11,13 +22,13 @@ function repl() {
     const input = prompt('> ')
     // Check for no user input or exit keyword.
     if (!input || input.includes('exit')) {
-      throw new Error()
+      // Deno.exit(1);
     }
 
     // Produce AST From sourc-code
     const program = parser.produceAST(input)
 
-    const result = evaluate(program)
+    const result = evaluate(program, env)
     console.log(result)
   }
 }
